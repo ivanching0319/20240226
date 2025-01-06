@@ -42,16 +42,7 @@
   <input type="image" class="addButton" id="addButton" src="/add.png">
   <script>
     const userID = localStorage.getItem("userID")
-    const task = []
     copyTile()
-    const items = document.querySelectorAll('.subtile-button')
-    items.forEach(item => {
-      item.addEventListener('click', function() {
-        const itemId = this.getAttribute('id');
-        localStorage.setItem("task",task[itemId])
-        window.location.href= "/timer.html"
-    })
-    })
 
     const button = document.getElementById("addButton")
     button.addEventListener("click",function(){
@@ -89,8 +80,8 @@
       +`?action=${"todoList"}&userID=${userID}`)
       const text = await res.text()
       const task = JSON.parse(text)
-      for (let i = 0 ; i < task.length;i ++) {
 
+      for (let i = 0 ; i < task.length;i ++) {
       const params = new URLSearchParams(task[i]);
       const title = params.get('titleID');
       const description = params.get('descriptionID');
@@ -124,6 +115,14 @@
       tilesContainer.appendChild(tileItem);
       tilesContainer.appendChild(subtile);
       }
+      const items = document.querySelectorAll('.subtile-button')
+    items.forEach(item => {
+      item.addEventListener('click', function() {
+        const itemId = this.getAttribute('id');
+        localStorage.setItem("task",task[itemId])
+        window.location.href= "/timer.html"
+    })
+    })
     }
 
 
