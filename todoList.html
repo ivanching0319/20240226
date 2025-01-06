@@ -3,6 +3,7 @@
   <head>
     <title>Self Learning Platform</title>
     <meta charset="UTF-8" />
+    <link rel="icon" href="/add.png" type="image/x-icon" />
     <meta name="viewport" content="width=device-width" />
     <!--
       Need a visual blank slate?
@@ -83,11 +84,11 @@
         submenu.classList.toggle('open');
         }
 
-    function copyTile() {
-      task.push("action=addTodo&userID=123@gmail.com&titleID=task1&descriptionID=1234&dateID=2024-12-19","action=addTodo&userID=123@gmail.com&titleID=task114514&descriptionID=erertetet&dateID=2024-12-04")
-      //await fetch('https://script.google.com/macros/s/AKfycbxtlx7G2v3Z9NfFKPD5nylJBkFMrL4q1vuxXqZnikjFizS9_46ePjA52Yq14MZvnqfq/exec'
-      //+`?action=${"todoList"}&userID=${userID}`))
-
+    async function copyTile() {
+      const res = await fetch('https://script.google.com/macros/s/AKfycbxtlx7G2v3Z9NfFKPD5nylJBkFMrL4q1vuxXqZnikjFizS9_46ePjA52Yq14MZvnqfq/exec'
+      +`?action=${"todoList"}&userID=${userID}`)
+      const text = await res.text()
+      const task = JSON.parse(text)
       for (let i = 0 ; i < task.length;i ++) {
 
       const params = new URLSearchParams(task[i]);
@@ -123,8 +124,6 @@
       tilesContainer.appendChild(tileItem);
       tilesContainer.appendChild(subtile);
       }
-      console.log(task[0])
-      console.log(userID)
     }
 
 
